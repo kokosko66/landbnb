@@ -1,9 +1,7 @@
-import Header from "../Header";
-
 export default function IndexPage() {
     return (
         <div>
-            <Header/>    
-        </div>
+            Index Page is here
+       </div>
     );
 }
