@@ -21,14 +21,18 @@ app.get('/test', (req, res) => {
     res.json('test ok');
 });
 
-app.post('/register', async (req, res) => {
-    const {name, email, password} = req.body;
-    const userDoc = await User.create({
-        name,
-        email,
-        password: bcrypt.hashSync(password, bcryptSalt),
-    });
-    res.json(userDoc);
-})
+try {
+    app.post('/register', async (req, res) => {
+        const {name, email, password} = req.body;
+        const userDoc = await User.create({
+            name,
+            email,
+            password: bcrypt.hashSync(password, bcryptSalt),
+        });
+        res.json(userDoc);
+    })
+} catch(e) {
+    res.status(422).json(e);
+}
 
 app.listen(3000);
